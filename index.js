@@ -80,10 +80,13 @@ const displayvideo=(data)=>{
         card.innerHTML=`
         
         <div class="card card-compact ">
-  <figure class="h-[200px]">
+  <figure class="h-[200px] relative">
     <img class="w-full h-full object-cover "
       src=${item.thumbnail}
       alt="Shoes" />
+
+
+      <span class="absolute bg-black rounded-lg text-white right-2 bottom-2">${item.others.posted_date}</span>
   </figure>
   <div class="h-[150px]">
 
@@ -110,7 +113,10 @@ const displayvideo=(data)=>{
                     
 
                     <p class="text-gray-400">${item.authors[0].profile_name}</p>
-                     <img class="h-5 w-5" src="verify.png" alt="">
+
+                    ${item.authors[0].verified==true?`<img class="h-5 w-5" src="verify.png" alt="">` :""};
+
+                     
                  </div>
                  <p class="text-gray-400">${item.others.views} views</P>
 
