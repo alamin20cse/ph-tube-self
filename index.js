@@ -1,5 +1,17 @@
 
 
+
+
+
+
+function getTime(time)
+{
+    const hour=parseInt(time/3600);
+    let remainsecond=time%3600;
+    const minute=parseInt(remainsecond/60);
+
+    return ` ${hour} hours ${minute} Minute ago`;
+}
 const loadcatagory=()=>{
   
     fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
@@ -86,7 +98,11 @@ const displayvideo=(data)=>{
       alt="Shoes" />
 
 
-      <span class="absolute bg-black rounded-lg text-white right-2 bottom-2">${item.others.posted_date}</span>
+
+      ${item.others.posted_date?.length==0 ?"" :`<span class="absolute bg-black rounded-lg p-4 text-white right-2 bottom-2">${getTime(item.others.posted_date)}</span>1`}
+
+      
+      
   </figure>
   <div class="h-[150px]">
 
