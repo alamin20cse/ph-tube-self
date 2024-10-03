@@ -1,6 +1,16 @@
 
 
+function alartfunction(id)
+{
+    // alert(id);
 
+
+    
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+    .then((res)=>res.json())
+    .then(data=>displayvideo(data.category))
+    .catch(error=>console.log(error))
+}
 
 
 
@@ -47,6 +57,10 @@ const displaycatagoriy=(data)=>{
         button.classList='btn ';
         button.innerText=element.category;
         buttoncontainar.append(button);
+      
+
+        button.onclick = () => alartfunction(element.category_id); 
+
         
 
 
@@ -86,6 +100,22 @@ const displayvideo=(data)=>{
     console.log(data);
 
     const videoContainar=document.getElementById('videos-id');
+    videoContainar.innerHTML='';
+    if(data.length==0)
+    {
+        videoContainar.innerHTML=`<div class="h-[400px] w-[400px] flex flex-col gap-6 justify-center items-center mx-auto ">
+        <img src="Icon.png" alt="">
+        <p>Oops! |Sorry ,There is no content here</p>
+
+
+      </div>`;
+      videoContainar.classList.remove("grid");
+        return;
+    }
+    else
+    {
+        videoContainar.classList.add("grid");
+    }
     data.forEach(item=>{
         
         const card=document.createElement('div');
